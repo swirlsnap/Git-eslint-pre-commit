@@ -3,7 +3,7 @@
 #
 # This ensures that all js files are valid and conform
 # to expectations.
-# Created by Kurt Newcomb for Accretive Technology
+# Created by Kurt Newcomb
 
 ROOT_DIR=$(git rev-parse --show-toplevel)
 ESLINT="${ROOT_DIR}/node_modules/eslint/bin/eslint.js"
