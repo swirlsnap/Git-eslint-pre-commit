@@ -1,0 +1,19 @@
+
+# Pre-commit hook passing files through eslint
+#
+# This ensures that all js files are valid and conform
+# to expectations.
+# Created by Kurt Newcomb for Accretive Technology
+
+ROOT_DIR=$(git rev-parse --show-toplevel)
+ESLINT="${ROOT_DIR}/node_modules/eslint/bin/eslint.js"
+
+for file in $(git diff-index --name-only --diff-filter=ACM --cached HEAD -- | grep -o '.*js$'); do
+    if node $ESLINT $file 2>&1 | grep 'No errors found' ; then
+        echo "eslint passed ${file}"
+        exit 0
+    else
+        node $ESLINT $file
+        exit 1
+    fi
+done
